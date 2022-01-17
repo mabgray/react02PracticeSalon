@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Navbar, NavbarBrand } from 'reactstrap';
 import './App.css';
+import Directory from './components/DirectoryComponent';
+import { STAFFINFO } from './shared/staffInfo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            staffInfo: STAFFINFO
+        };
+    }
+
+
+    render() {
+        return (
+            <div className="App">
+                <Navbar dark color="secondary">
+                <div className="container">
+                    <NavbarBrand href="/">Salon Name</NavbarBrand>
+                </div>
+                </Navbar>
+                <Directory staffInfo={this.state.staffInfo}/>
+            </div>
+        );
+    }
 }
 
 export default App;
