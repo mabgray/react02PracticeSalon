@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import StylistInfo from '../StylistInfoComponent';
 
 
@@ -15,21 +15,7 @@ class Directory extends Component {
         this.setState({selectedStylist: stylist});
     }
 
-    renderSelectedStylist(stylist) {
-        if (stylist) {
-            return (
-                <Card>
-                    <CardImg top src={stylist.image} alt={stylist.name} />
-                    <CardBody>
-                        <CardTitle>{stylist.name}</CardTitle>
-                        <CardText>{stylist.style}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        }
-        return <div />;
-    }
-
+    
     render() {
         const directory = this.props.staffInfo.map(stylist => {
             return (
