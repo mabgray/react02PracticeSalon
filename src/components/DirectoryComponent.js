@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import StylistInfo from '../StylistInfoComponent';
+
 
 class Directory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCampsite: null
+            selectedStylist: null
         };
     }
 
-    onCampsiteSelect(campsite) {
-        this.setState({selectedCampsite: campsite});
+    onStylistSelect(stylist) {
+        this.setState({selectedStylist: stylist});
     }
 
-    renderSelectedCampsite(campsite) {
-        if (campsite) {
+    renderSelectedStylist(stylist) {
+        if (stylist) {
             return (
                 <Card>
-                    <CardImg top src={campsite.image} alt={campsite.name} />
+                    <CardImg top src={stylist.image} alt={stylist.name} />
                     <CardBody>
-                        <CardTitle>{campsite.name}</CardTitle>
-                        <CardText>{campsite.description}</CardText>
+                        <CardTitle>{stylist.name}</CardTitle>
+                        <CardText>{stylist.style}</CardText>
                     </CardBody>
                 </Card>
             );
@@ -29,13 +31,13 @@ class Directory extends Component {
     }
 
     render() {
-        const directory = this.props.campsites.map(campsite => {
+        const directory = this.props.staffInfo.map(stylist => {
             return (
-                <div key={campsite.id} className="col-md-5 m-1">
-                    <Card onClick={() => this.onCampsiteSelect(campsite)}>
-                        <CardImg width="100%" src={campsite.image} alt={campsite.name} />
+                <div key={stylist.id} className="col-md-5 m-1">
+                    <Card onClick={() => this.onStylistSelect(stylist)}>
+                        <CardImg width="100%" src={stylist.image} alt={stylist.name} />
                         <CardImgOverlay>
-                            <CardTitle>{campsite.name}</CardTitle>got 
+                            <CardTitle>{stylist.name}</CardTitle>got 
                         </CardImgOverlay>
                     </Card>
                 </div>
@@ -47,11 +49,7 @@ class Directory extends Component {
                 <div className="row">
                     {directory}
                 </div>
-                <div className="row">
-                    <div className="col-md-5 m-1">
-                        {this.renderSelectedCampsite(this.state.selectedCampsite)}
-                    </div>
-                </div>
+                <StylistInfo  stylist={this.state.selectedStylist}/>
             </div>
         );
     }
