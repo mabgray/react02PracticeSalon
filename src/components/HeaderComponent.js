@@ -1,3 +1,8 @@
+import React, { Component }  from 'react';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -38,11 +43,7 @@ class Header extends Component {
                                         <i className="fa fa-home fa-lg" /> Home
                                     </NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to="/directory">
-                                        <i className="fa fa-list fa-lg" /> Directory
-                                    </NavLink>
-                                </NavItem>
+                                
                                 <NavItem>
                                     <NavLink className="nav-link" to="/aboutus">
                                         <i className="fa fa-info fa-lg" /> About

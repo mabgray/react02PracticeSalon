@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import Directory from './components/DirectoryComponent';
-import { STAFFINFO } from './shared/staffInfo';
+import '../App.css';
+import Directory from './DirectoryComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import Contact from './ContactUsComponent';
+import { STAFFINFO } from '../shared/staffInfo';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
 
@@ -18,13 +21,19 @@ class Main extends Component {
     render() {
         return (
             <div className="App">
-                <Navbar dark color="secondary">
-                <div className="container">
-                    <NavbarBrand href="/">Salon Name</NavbarBrand>
-                </div>
-                </Navbar>
-                <Directory staffInfo={this.state.staffInfo}/>
+                
+               
+                <Header />
+                <Switch>
+                    <Route path='/home' component={Home} />
+                    <Route exact path='/aboutus' render={() => <Directory staffInfo={this.state.staffInfo} />} />
+                    <Route path='/contactus' component={Contact} />
+                    <Redirect to='/home' />
+                </Switch>
+                <Footer />
             </div>
+
+
         );
     }
 }
