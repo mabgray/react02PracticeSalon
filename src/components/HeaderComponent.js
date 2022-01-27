@@ -25,8 +25,8 @@ class Header extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <h1>NuCamp</h1>
-                                <h2>a better way to camp</h2>
+                                <h1>Salon Name</h1>
+                                <h2>Get Your Hair Cut</h2>
                             </div>
                         </div>
                     </div>
@@ -52,6 +52,12 @@ class Header extends Component {
                                 <NavItem>
                                     <NavLink className="nav-link" to="/contactus">
                                         <i className="fa fa-address-card fa-lg" /> Contact Us
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/makeappointment">
+                                        <i className="fa fa-calendar fa-lg" /> Make Appointment
+                                        
                                     </NavLink>
                                 </NavItem>
                             </Nav>

@@ -4,6 +4,7 @@ import Directory from './DirectoryComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
+import Appointment from './AppoinmentComponent';
 import Contact from './ContactUsComponent';
 import { STAFFINFO } from '../shared/staffInfo';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -28,6 +29,7 @@ class Main extends Component {
                     <Route path='/home' component={Home} />
                     <Route exact path='/aboutus' render={() => <Directory staffInfo={this.state.staffInfo} />} />
                     <Route path='/contactus' component={Contact} />
+                    <Route path='/makeappointment' component={Appointment} />
                     <Redirect to='/home' />
                 </Switch>
                 <Footer />

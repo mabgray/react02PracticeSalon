@@ -12,7 +12,9 @@ function Home(props) {
         <div className="container backgroundImage">
         <div className="row">
           
-            <div className="col">stuff</div>
+            <div className="col">
+                <h1>Salon Name</h1>
+            </div>
         </div>
     </div>
     );
