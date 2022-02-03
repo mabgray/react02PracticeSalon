@@ -20,8 +20,8 @@ function Contact(props) {
                 <div className="col-sm-4">
                     <h5>Our Address</h5>
                     <address>
-                        1 Nucamp Way<br />
-                        Seattle, WA 98001<br />
+                        1 Main street<br />
+                        Kansas City, Missouri<br />
                         U.S.A.
                     </address>
                 </div>

@@ -6,19 +6,22 @@ import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Appointment from './AppoinmentComponent';
 import Contact from './ContactUsComponent';
-import { STAFFINFO } from '../shared/staffInfo';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        staffInfo: state.staffInfo
+       
+     
+    };
+};
+
+
 
 class Main extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            staffInfo: STAFFINFO
-        };
-    }
-
-
+   
     render() {
         return (
             <div className="App">
@@ -27,7 +30,7 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route path='/home' component={Home} />
-                    <Route exact path='/aboutus' render={() => <Directory staffInfo={this.state.staffInfo} />} />
+                    <Route exact path='/aboutus' render={() => <Directory staffInfo={this.props.staffInfo} />} />
                     <Route path='/contactus' component={Contact} />
                     <Route path='/makeappointment' component={Appointment} />
                     <Redirect to='/home' />
@@ -40,4 +43,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));
