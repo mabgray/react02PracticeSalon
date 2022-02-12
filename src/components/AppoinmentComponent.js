@@ -1,61 +1,160 @@
-import React from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React, {Component} from 'react';
+import { Col, Row, Button, Label, } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 
-function Appointment(props){
+const required = val => val && val.length;
+const maxLength = len => val => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
+const isNumber = val => !isNaN(+val);
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
+
+class Appointment extends Component {
+
+  handleSubmit(values){
+      alert(values);
+  }
+  render(){
+
   return (
-    <Form>
-      <FormGroup row>
-        <Label for="exampleEmail" sm={2}>Email</Label>
-        <Col sm={10}>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="examplePassword" sm={2}>Password</Label>
-        <Col sm={10}>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="exampleSelect" sm={2}>Select Service</Label>
-        <Col sm={10}>
-          <Input type="select" name="select" id="exampleSelect">
-            <option>Hair Cut</option>
-            <option>Blow Out</option>
-            <option>Color - all over</option>
-            <option>Color - artistic placement</option>
-            <option>Updo</option>
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="exampleSelectMulti" sm={2}>Select Stylist</Label>
-        <Col sm={10}>
-          <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-            <option>Star Stylist</option>
-            <option>Senior Stylist</option>
-            <option>Junior Stylist</option>
-            <option>Student</option>
-      
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="exampleText" sm={2}>Additional Information</Label>
-        <Col sm={10}>
-          <Input type="textarea" name="text" id="exampleText" />
-        </Col>
-      </FormGroup>
-     
-      
-      
-      <FormGroup check row>
-        <Col sm={{ size: 10, offset: 2 }}>
-          <Button>Submit</Button>
-        </Col>
-      </FormGroup>
-    </Form>
+<LocalForm onSubmit={values => this.handleSubmit(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor="firstName" md={2}>First Name</Label>
+                                <Col md={10}>
+                                    <Control.text model=".firstName" id="firstName" name="firstName"
+                                        placeholder="First Name"
+                                        className="form-control"
+                                        validators={{
+                                          required, 
+                                          minLength: minLength(2),
+                                          maxLength: maxLength(15)
+                                      }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".firstName"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="lastName" md={2}>Last Name</Label>
+                                <Col md={10}>
+                                    <Control.text model=".lastName" id="lastName" name="lastName"
+                                        placeholder="Last Name"
+                                        className="form-control"
+                                        validators={{
+                                          required,
+                                          minLength: minLength(2),
+                                          maxLength: maxLength(15)
+                                      }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".lastName"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="phoneNum" md={2}>Phone</Label>
+                                <Col md={10}>
+                                    <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
+                                        placeholder="Phone number"
+                                        className="form-control"
+                                        validators={{
+                                          required,
+                                          minLength: minLength(10),
+                                          maxLength: maxLength(15),
+                                          isNumber
+                                      }}
+                                    />
+                                     <Errors
+                                        className="text-danger"
+                                        model=".phoneNum"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 10 numbers',
+                                            maxLength: 'Must be 15 numbers or less',
+                                            isNumber: 'Must be a number'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="email" md={2}>Email</Label>
+                                <Col md={10}>
+                                    <Control.text model=".email" id="email" name="email"
+                                        placeholder="Email"
+                                        className="form-control"
+                                        validators={{
+                                          required,
+                                          validEmail
+                                      }}
+                                    />
+                                     <Errors
+                                        className="text-danger"
+                                        model=".email"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            validEmail: 'Invalid email address'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                
+                                <Col md={4}>
+                                    <Control.select model=".serviceType" name="serviceType"
+                                        className="form-control">
+                                        <option>Hair Cut</option>
+                                        <option>Blow Out</option>
+                                        <option>Color</option>
+                                        <option>UpDo</option>
+                                    </Control.select>
+                                </Col>
+                                <Col md={4}>
+                                    <Control.select model=".stylistType" name="stylistType"
+                                        className="form-control">
+                                        <option>Star Stylist</option>
+                                        <option>Senior Stylist</option>
+                                        <option>Junior Stylist</option>
+                                        <option>Student</option>
+                                    </Control.select>
+                                </Col>
+                            </Row>
+                            
+                            <Row className="form-group">
+                                <Col md={{size: 10, offset: 2}}>
+                                    <Button type="submit" color="primary">
+                                        Send 
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </LocalForm>
+
+
+    
   );
+  }
 }
+
+
 
 export default Appointment;

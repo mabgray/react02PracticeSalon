@@ -26,7 +26,7 @@ class Header extends Component {
                         <div className="row">
                             <div className="col">
                                 <h1>Salon Name</h1>
-                                <h2>Get Your Hair Cut</h2>
+                                <h2 className="tagline">Get Your Hair Cut</h2>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ class Header extends Component {
  
                 <Navbar dark sticky="top" expand="md">
                     <div className="container">
-                        <NavbarBrand className="mr-auto" href="/"><img src="/assets/images/logo.png" height="30" width="30" alt="NuCamp Logo" /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src="/assets/images/logo.png" height="30" width="30" alt="salon logo here" /></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>

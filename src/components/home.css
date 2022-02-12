@@ -1,3 +1,4 @@
 .backgroundImage {
     background-color: pink;
+    max-width: none !important;
 }
